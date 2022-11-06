@@ -15,11 +15,11 @@ If the faucet has enough funds you will receive 0.1 ETH to your Ethereum address
 
 ## Requirements & Demo
 
-This version of the smart contract is deployed on the [Ropsten Testnetwork](https://ropsten.etherscan.io/) and you can find it with the following address:
+This version of the smart contract is deployed on the [Binance Testnetwork](https://testnet.bscscan.com/) and you can find it with the following address:
 
-[0x5194d3D2D77585ff89a2823F77C191a93d2F6416](https://ropsten.etherscan.io/address/0x5194d3D2D77585ff89a2823F77C191a93d2F6416)
+[0xA9e646BCd0f102c23275BEBC092d935D9aE10759](https://testnet.bscscan.com/address/0xA9e646BCd0f102c23275BEBC092d935D9aE10759)
 
-If you want to use the smart contract you will need an Ethereum Wallet that can interact with smart contracts and switch to the Ropsten Testnetwork (Example: [MetaMask](https://metamask.io/)).
+If you want to use the smart contract you will need an Ethereum Wallet that can interact with smart contracts and switch to the BSC Testnetwork (Example: [MetaMask](https://metamask.io/)).
 
 ## Features
 
