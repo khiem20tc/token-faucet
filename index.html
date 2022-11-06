@@ -4,11 +4,11 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Ropsten Testnet Faucet for Ethereum">
-    <meta name="author" content="Jacob Suchorabski">
+    <meta name="description" content="Binance Smart Chain Testnet Faucet for Ethereum">
+    <meta name="author" content="Khiem Nguyen Huynh Huu">
     <link rel="canonical" href="https://getbootstrap.com/docs/3.3/examples/navbar/">
 
-    <title>Ropsten Faucet</title>
+    <title>BinanceTest Faucet</title>
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
@@ -37,8 +37,8 @@
 <body>
     <div class="container theme-showcase" role="main">
     <div class="jumbotron">
-        <h1>Ethereum Faucet</h1>
-        <p>You can withdraw Ether from this Ropsten Faucet. Make sure to connect your wallet and switch to the Ropsten Testnet.</p>
+        <h1>BinanceTest Faucet</h1>
+        <p>You can withdraw Ether from this Faucet. Make sure to connect your wallet and switch to the Binance Smart Chain Testnet.</p>
         <p>
             <a class="btn btn-lg btn-primary" role="button" onclick="requestEther()">Request Ether</a>
             <a class="btn btn-lg btn-success" role="button" onclick="donateEther()">Donate Ether</a>
@@ -47,7 +47,7 @@
 
     <div class="page-header"><h2>Faucet Data</h2></div>
     <div>
-        <h3>Contract Address: <a href="https://ropsten.etherscan.io/address/0x5194d3d2d77585ff89a2823f77c191a93d2f6416" target="_blank">0x5194d3D2D77585ff89a2823F77C191a93d2F6416</a></h3>
+        <h3>Contract Address: <a href="https://testnet.bscscan.com/address/0xA9e646BCd0f102c23275BEBC092d935D9aE10759" target="_blank">0xA9e646BCd0f102c23275BEBC092d935D9aE10759</a></h3>
         <h3 id="balance">Available Funds: (loading ...)</h3>
         <h3 id="tx_result" class="text-info"></h3>
     </div>
@@ -58,70 +58,117 @@
     <script src="https://cdn.jsdelivr.net/npm/web3@1.3.1/dist/web3.min.js" crossorigin="anonymous"></script>
 
     <script>
-        const contract_address = '0x5194d3D2D77585ff89a2823F77C191a93d2F6416'
+        const contract_address = '0xA9e646BCd0f102c23275BEBC092d935D9aE10759'
         const contract_abi = [
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "internalType": "address",
-                        "name": "from",
-                        "type": "address"
-                    },
-                    {
-                        "indexed": false,
-                        "internalType": "uint256",
-                        "name": "amount",
-                        "type": "uint256"
-                    }
-                ],
-                "name": "Deposit",
-                "type": "event"
-            },
-            {
-                "anonymous": false,
-                "inputs": [
-                    {
-                        "indexed": true,
-                        "internalType": "address",
-                        "name": "to",
-                        "type": "address"
-                    }
-                ],
-                "name": "Withdrawal",
-                "type": "event"
-            },
-            {
-                "inputs": [],
-                "name": "destroy",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "stateMutability": "payable",
-                "type": "receive"
-            },
-            {
-                "inputs": [],
-                "name": "withdraw",
-                "outputs": [],
-                "stateMutability": "nonpayable",
-                "type": "function"
-            },
-            {
-                "inputs": [],
-                "stateMutability": "nonpayable",
-                "type": "constructor"
-            }
-        ]
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "from",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "uint256",
+				"name": "amount",
+				"type": "uint256"
+			}
+		],
+		"name": "Deposit",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "destroy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "renounceOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "transferOwnership",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "Withdrawal",
+		"type": "event"
+	},
+	{
+		"stateMutability": "payable",
+		"type": "receive"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]
 
         window.addEventListener('load', function () {
             if (typeof web3 !== 'undefined') {
                 web3 = new Web3(window.ethereum)
             } else {
-                web3 = new Web3(new Web3.providers.HttpProvider('http://localhost:8545'));
+                web3 = new Web3(new Web3.providers.HttpProvider('https://data-seed-prebsc-1-s1.binance.org:8545/'));
             }
 
             new Promise((resolve, reject) => {

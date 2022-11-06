@@ -1,19 +1,21 @@
 // SPDX-License-Identifier: MIT
-// Author: Jacob Suchorabski
-pragma solidity >= 0.7.0 <= 0.7.4;
+// Author: Khiemnhh
+pragma solidity 0.7.2;
 
-contract Faucet{
+import "./Ownable.sol";
+
+contract Faucet is Ownable{
     
-    address owner;
+    // address owner;
     mapping (address => uint) timeouts;
     
     event Withdrawal(address indexed to);
     event Deposit(address indexed from, uint amount);
     
-    constructor() {
-        //Will be called on creation of the smart contract.
-        owner = msg.sender;
-    }
+    // constructor() {
+    //     //Will be called on creation of the smart contract.
+    //     owner = msg.sender;
+    // }
     
     //  Sends 0.1 ETH to the sender when the faucet has enough funds
     //  Only allows one withdrawal every 30 mintues
@@ -35,8 +37,8 @@ contract Faucet{
     
     
     //  Destroys this smart contract and sends all remaining funds to the owner
-    function destroy() public{
-        require(msg.sender == owner, "Only the owner of this faucet can destroy it.");
+    function destroy() public onlyOwner{
+        //require(msg.sender == owner, "Only the owner of this faucet can destroy it.");
         selfdestruct(msg.sender);
     }
 }
