@@ -1,8 +1,8 @@
 // SPDX-License-Identifier: MIT
 // Author: Khiemnhh
-pragma solidity 0.7.2;
+pragma solidity 0.8.2;
 
-import "./Ownable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
 
 contract Faucet is Ownable{
     
@@ -12,11 +12,6 @@ contract Faucet is Ownable{
     event Withdrawal(address indexed to);
     event Deposit(address indexed from, uint amount);
     
-    // constructor() {
-    //     //Will be called on creation of the smart contract.
-    //     owner = msg.sender;
-    // }
-    
     //  Sends 0.1 ETH to the sender when the faucet has enough funds
     //  Only allows one withdrawal every 30 mintues
     function withdraw() external{
@@ -24,21 +19,24 @@ contract Faucet is Ownable{
         require(address(this).balance >= 0.1 ether, "This faucet is empty. Please check back later.");
         require(timeouts[msg.sender] <= block.timestamp - 30 minutes, "You can only withdraw once every 30 minutes. Please check back later.");
         
-        msg.sender.transfer(0.1 ether);
+        payable(msg.sender).transfer(0.1 ether);
         timeouts[msg.sender] = block.timestamp;
         
         emit Withdrawal(msg.sender);
     }
     
     //  Sending Tokens to this faucet fills it up
-    receive() external payable {
+    // receive() external payable {
+    //     emit Deposit(msg.sender, msg.value); 
+    // } 
+
+    function deposit() external payable {
         emit Deposit(msg.sender, msg.value); 
-    } 
+    }
     
     
     //  Destroys this smart contract and sends all remaining funds to the owner
     function destroy() public onlyOwner{
-        //require(msg.sender == owner, "Only the owner of this faucet can destroy it.");
-        selfdestruct(msg.sender);
+        selfdestruct(payable(msg.sender));
     }
 }
